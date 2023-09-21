@@ -1,0 +1,128 @@
+/**
+	Author:		Vladyslav Strebkov
+	Email:		kit@foxk.ru
+	Telegram:	KitDev
+**/
+
+
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	outline: none;
+}
+
+/* Стандартный transition */
+*,
+*::before,
+*::after {
+	-webkit-transition: .3s;
+	-o-transition: .3s;
+	transition: .3s;
+}
+textarea {
+	-webkit-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+/* Списки */
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-position: inside;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+	min-width: 320px;
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+}
+
+/* Удаляем подчёркивание */
+a {
+	text-decoration: none;
+}
+
+/* Подчёркивания при необходимости */
+.under {
+	text-decoration: underline;
+	cursor: pointer;
+}
+.under:hover {
+	text-decoration: none;
+}
+.hunder {
+	text-decoration: none;
+	cursor: pointer;
+}
+.hunder:hover {
+	text-decoration: underline;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+	max-width: 100%;
+	display: block;
+	user-select: none; /* Запрет выделения картинки */
+	pointer-events: none; /* Запрет захвата мышкой картинки */
+}
+
+/* Наследуем шрифты */
+* {
+	font: inherit;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	line-height: inherit;
+	text-transform: inherit;
+}
+
+/* forms */
+input,
+button,
+textarea {
+	padding: 0;
+	border: none;
+}
+button,
+input[type=submit] {
+	cursor: pointer;
+}
+
+/* Slick slider */
+.slick-initialized * {
+	transition: none;
+}

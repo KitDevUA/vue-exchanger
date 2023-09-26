@@ -42,29 +42,29 @@
 </template>
 
 <script>
+import { ref, reactive, onMounted } from 'vue';
+
 export default {
 	props: ['entry_currencies'],
-	data() {
-		return {
-			currencies: [],
-		};
-	},
-	methods: {
-		calcUahToCurrency(i) {
-			this.currencies[i].currencyAmount = this.formatValue(this.currencies[i].uahAmount / this.currencies[i].rate);
-		},
-		calcCurrencyToUah(i) {
-			this.currencies[i].uahAmount = this.formatValue(this.currencies[i].currencyAmount * this.currencies[i].rate);
-		},
+	setup(props) {
+		const entry_currencies = ref(props.entry_currencies);
+		let currencies = reactive([]);
 		
-		formatValue(value) {
+		const calcUahToCurrency = (i) => {
+			currencies[i].currencyAmount = formatValue(currencies[i].uahAmount / currencies[i].rate);
+		};
+		const calcCurrencyToUah = (i) => {
+			currencies[i].uahAmount = formatValue(currencies[i].currencyAmount * currencies[i].rate);
+		};
+		
+		const formatValue = (value) => {
 			const rounded = Math.round(value * 100) / 100;
 			return Number(rounded.toFixed(2).replace(/\.?0+$/, ''));
-		},
+		};
 		
-		createCurrencies() {
-			this.entry_currencies.forEach((currency) => {
-				this.currencies.push({
+		const createCurrencies = () => {
+			entry_currencies.value.forEach((currency) => {
+				currencies.push({
 					name: currency.currency,
 					rate: currency.rate,
 					uahAmount: 100,
@@ -72,13 +72,23 @@ export default {
 				});
 			});
 			
-			this.currencies.forEach((currency, i) => {
-			this.calcUahToCurrency(i);
-		});
-		},
-	},
-	mounted() {
-		this.createCurrencies();
+			currencies.forEach((currency, i) => {
+				calcUahToCurrency(i);
+			});
+		};
+		
+		onMounted(createCurrencies);
+		// Або:
+		/* onMounted(() => {
+			createCurrencies();
+		}); */
+		
+		return {
+			currencies,
+			formatValue,
+			calcUahToCurrency,
+			calcCurrencyToUah
+		};
 	},
 };
 </script>

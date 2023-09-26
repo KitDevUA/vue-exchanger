@@ -6,34 +6,37 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 import Loader from './components/Loader.vue';
 import Converter from './components/Converter.vue';
 
 export default {
-	data() {
-		return {
-			loaded: false,
-			currencies: [
-				{ currency: 'USD', rate: 37.5 },
-				{ currency: 'EUR', rate: 40 },
-				{ currency: 'PLN', rate: 8 },
-			],
-		};
-	},
 	components: {
 		Loader,
 		Converter,
 	},
-	methods: {
-		getCurrencies() {
+	setup() {
+		const loaded = ref(false);
+		const currencies = ref([
+			{ currency: 'USD', rate: 37.5 },
+			{ currency: 'EUR', rate: 40 },
+			{ currency: 'PLN', rate: 8 },
+		]);
+		
+		const getCurrencies = () => {
 			setTimeout(() => {
-				// Симуляція AJAX запиту..
-				this.loaded = true;
-			}, 4000);
-		},
-	},
-	mounted() {
-		this.getCurrencies();
+				// Симуляція AJAX запиту.
+				loaded.value = true;
+			}, 2000);
+		};
+		
+		onMounted(getCurrencies);
+		
+		return {
+			loaded,
+			currencies,
+			getCurrencies
+		};
 	},
 };
 </script>

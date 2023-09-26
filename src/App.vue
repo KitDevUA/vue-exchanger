@@ -16,7 +16,7 @@ export default {
 			currencies: [
 				{ currency: 'USD', rate: 37.5 },
 				{ currency: 'EUR', rate: 40 },
-				{ currency: 'ZLT', rate: 8 },
+				{ currency: 'PLN', rate: 8 },
 			],
 		};
 	},
@@ -29,7 +29,7 @@ export default {
 			setTimeout(() => {
 				// Симуляція AJAX запиту..
 				this.loaded = true;
-			}, 1000);
+			}, 4000);
 		},
 	},
 	mounted() {
